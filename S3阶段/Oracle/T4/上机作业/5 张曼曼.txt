@@ -1,0 +1,70 @@
+--字符函数
+--连接字符concat
+select concat('hello','world') from dual;
+--截取字符substr
+select substr('abcdefg',1,3) from dual;
+--去除空格itrim
+--select Itrim('   jkljlk') from dual;
+--求字符串长度length
+select length('123456') from dual;
+--大写转换upper
+select upper('hello') from dual;
+--小写转换lower
+select lower('HUBER')from dual;
+--首字母转大写initcap
+select initcap('oracle') from dual;
+--替换单个字符 translate
+select translate('sdsdsssd','s','k')from dual;  
+--查找字符索引instr
+select instr('qwseqee','s')from dual;
+--替换多个字符replace searchstring
+--select Replace Searchstring('asdfasgha','as','bh') from dual;
+--日期函数
+--加月份add_months
+select add_months(sysdate,5)from dual;
+--获取日期所在月的最后一天last_date
+select last_day(sysdate)from dual;
+--获取两个日期间隔的月数
+--select months_between(sysdate,5) from dual;
+--转换函数
+--将日期转换为m所指定的格式
+select to_char(sysdate,'yyyy-mm-dd dy am hh:mi:ss')from dual;
+select to_date('18-4-2018','dd-mm-yyyy')from dual;
+select to_date('05-14-2108','mm-dd-yyyy')from dual;
+select to_number('$12,345.6','$99,999.9')from dual;
+select to_number('0023','0099') from dual;
+select to_number('05.168','09.999') from dual;
+--创建部门表dept
+create table dept(
+did integer primary key,
+dname varchar2(20),
+manager integer,
+tel varchar2(30)
+)
+--创建员工表emp
+create table emp(
+eid integer primary key,
+ename varchar2(20),
+sex varchar2(2),
+sar number(8,2)
+)
+select * from emp;
+insert into emp values(1,'大头','女','5000');
+insert into emp values(2,'小头','男','10000');
+insert into emp values(3,'小大头','女','9100');
+select * from dept;
+insert into dept values(1,'董事会',5,'10086');
+insert into dept values(2,'研发部',6,'12306');
+--高级查询
+update dept set tel=null where dname='研发部';
+select d.did,d.dname,nvl(d.tel,'无') from dept d;
+
+select eid,ename,
+case sex
+when 'm' then '男'
+when 'f' then '女'
+end
+from emp;
+
+--使用exp/imp备份与恢复数据
+ drop table dept;
